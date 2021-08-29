@@ -3,7 +3,8 @@ from . import views #importing views from views.py. when we hit this route run t
 
 urlpatterns = [
   path('', views.home, name='home'),
-  path('about/', views.about, name='about')
+  path('about/', views.about, name='about'),
+  path('finches/', views.finches_index, name='finches_index')
 ]
 
 
