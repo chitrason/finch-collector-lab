@@ -18,7 +18,7 @@ class Finch(models.Model):
     return self.name
   
   def get_absolute_url(self):
-    return reverse('finches_detail', kwargs={'finches_id': self.id})  
+    return reverse('finches_detail', kwargs={'finch_id': self.id})  
 
 #adding second model-feeding
 class Feeding(models.Model):
@@ -33,3 +33,6 @@ class Feeding(models.Model):
 
   def __str__(self):
     return f"{self.get_meal_display()} on {self.date}"
+
+  class Meta:
+    ordering = ['-date']
