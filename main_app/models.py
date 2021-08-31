@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 MEALS = (
   ('B', 'Breakfast'),
@@ -20,6 +21,9 @@ class Finch(models.Model):
   def get_absolute_url(self):
     return reverse('finches_detail', kwargs={'finch_id': self.id})  
 
+  def fed_for_today(self):
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+
 #adding second model-feeding
 class Feeding(models.Model):
   date = models.DateField('Feeding date')
@@ -36,3 +40,4 @@ class Feeding(models.Model):
 
   class Meta:
     ordering = ['-date']
+
